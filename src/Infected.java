@@ -35,28 +35,30 @@ public class Infected {
 			infectedList = new int[computers]; 
 			infectedList[infected++] = origin ;
 			//infected++ ;
-			
-			for(int i = 0 ; i < edges; i++)
+			for(int j = 0 ; j < edges ; j++)
 			{
-				if(isInfected(infectedList,infected,connections[i][0]))
+				for(int i = 0 ; i < edges; i++)
 				{
-					if(!isInfected(infectedList,infected,connections[i][1]))
+					if(isInfected(infectedList,infected,connections[i][0]))
 					{
-						infectedList[infected] = connections[i][1] ;
-						infected++ ;
+						if(!isInfected(infectedList,infected,connections[i][1]))
+						{
+							infectedList[infected] = connections[i][1] ;
+							infected++ ;
+							
+							
+						}
 						
+					}
+					else if(isInfected(infectedList,infected,connections[i][1]))
+					{
+						infectedList[infected] = connections[i][0] ;
+						infected++ ;
 						
 					}
 					
+									
 				}
-				else if(isInfected(infectedList,infected,connections[i][1]))
-				{
-					infectedList[infected] = connections[i][0] ;
-					infected++ ;
-					
-				}
-				
-								
 			}
 			
 			System.out.println(infected-1);
